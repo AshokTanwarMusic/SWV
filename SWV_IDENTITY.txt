@@ -1,0 +1,9 @@
+SWV custom identity
+
+App name: SWV
+Launcher label: SWV
+Launcher icon: supplied SWV artwork, installed into all legacy density mipmap folders.
+Package ID: com.music.bitchord (unchanged)
+ABI: armeabi-v7a
+Build variant: prodRelease
+APK artifact name: SWV-1.5-32bit.apk
