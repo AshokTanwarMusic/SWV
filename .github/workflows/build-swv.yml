@@ -54,6 +54,8 @@ jobs:
         run: |
           set -e
 
+          mkdir -p artifacts
+
           APK=$(find app/build/outputs/apk -type f -name "*.apk" | head -n 1)
 
           if [ -z "$APK" ]; then
@@ -66,7 +68,7 @@ jobs:
           ZIPALIGN="$ANDROID_HOME/build-tools/36.0.0/zipalign"
           APKSIGNER="$ANDROID_HOME/build-tools/36.0.0/apksigner"
 
-          "$ZIPALIGN" -f -p 4 "$APK" artifacts-aligned.apk
+          "$ZIPALIGN" -f -p 4 "$APK" artifacts/artifacts-aligned.apk
 
           "$APKSIGNER" sign \
             --ks swv-release.jks \
@@ -74,7 +76,7 @@ jobs:
             --ks-pass env:KEYSTORE_PASSWORD \
             --key-pass env:KEY_PASSWORD \
             --out artifacts/SWV-1.5-32bit.apk \
-            artifacts-aligned.apk
+            artifacts/artifacts-aligned.apk
 
           "$APKSIGNER" verify --verbose artifacts/SWV-1.5-32bit.apk
 
@@ -85,7 +87,7 @@ jobs:
         if: always()
         run: |
           rm -f swv-release.jks
-          rm -f artifacts-aligned.apk
+          rm -f artifacts/artifacts-aligned.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
