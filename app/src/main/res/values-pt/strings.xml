@@ -325,7 +325,7 @@
     <string name="downloads_finished">Downloads · concluídos</string>
     <string name="downloading_progress">Baixando · %1$d%%</string>
     <string name="starting">Iniciando</string>
-    <string name="saved_to_SWV_folder">Salvo em Música/SWV</string>
+    <string name="saved_to_swv_folder">Salvo em Música/SWV</string>
     <string name="nothing_downloading">Nenhum download em andamento</string>
     <string name="nothing_to_explore">Nada para explorar agora</string>
     <string name="no_youtube_music_results">Sem resultados do YouTube Music</string>

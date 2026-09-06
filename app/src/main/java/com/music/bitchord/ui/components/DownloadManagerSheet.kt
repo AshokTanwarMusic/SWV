@@ -358,7 +358,7 @@ private fun DownloadManagerRow(
                         },
                     )
                 }
-                is DownloadProgress.Done -> RowStatus(stringResource(R.string.saved_to_bitchord_folder))
+                is DownloadProgress.Done -> RowStatus(stringResource(R.string.saved_to_swv_folder))
                 is DownloadProgress.Failed ->
                     RowStatus(progress.reason, MaterialTheme.colorScheme.error)
             }
