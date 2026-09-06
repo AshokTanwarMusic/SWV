@@ -385,7 +385,7 @@ class ModuleManager {
     }
 
     private companion object {
-        const val TAG = "SWV"
+        const val TAG = "BitChord"
 
         /**
          * How long a fetched index is trusted. Long enough that a run of

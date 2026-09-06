@@ -15,6 +15,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "SWV"
+rootProject.name = "BitChord"
 include(":app")
  

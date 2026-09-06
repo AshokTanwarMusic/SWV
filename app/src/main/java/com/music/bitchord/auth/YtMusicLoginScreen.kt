@@ -37,7 +37,7 @@ private const val LOGIN_URL =
 private val LOGOUT_THEN_LOGIN_URL =
     "https://accounts.google.com/Logout?continue=${Uri.encode(LOGIN_URL)}"
 
-private const val TAG = "SWV"
+private const val TAG = "BitChord"
 
 /**
  * In-app Google sign-in for YouTube Music, and the way to change which channel

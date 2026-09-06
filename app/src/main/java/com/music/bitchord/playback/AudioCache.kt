@@ -62,7 +62,7 @@ import kotlin.coroutines.coroutineContext
 @UnstableApi
 object AudioCache {
 
-    private const val TAG = "SWV"
+    private const val TAG = "BitChord"
 
     /**
      * The disk budget, straight from [AppSettings] — 512MB by default, roughly

@@ -168,7 +168,7 @@ object TrackFeatures {
         }
     }
 
-    private const val TAG = "SWVTrackFeatures"
+    private const val TAG = "BitChordTrackFeatures"
 
     @JvmStatic private external fun nativeAnalyze(
         samples: FloatArray,

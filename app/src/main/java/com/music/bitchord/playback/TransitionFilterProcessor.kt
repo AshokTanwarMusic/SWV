@@ -263,7 +263,7 @@ class TransitionFilterProcessor : BaseAudioProcessor() {
         value.coerceIn(Short.MIN_VALUE.toFloat(), Short.MAX_VALUE.toFloat()).toInt().toShort()
 
     companion object {
-        private const val TAG = "SWVTransitionFilter"
+        private const val TAG = "BitChordTransitionFilter"
 
         /** A low-pass at or above this is doing nothing audible, so it counts as off. */
         const val OPEN_HZ = 20_000f

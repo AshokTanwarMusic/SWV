@@ -46,7 +46,7 @@ import java.io.InputStream
  */
 object EmbeddedLyrics {
 
-    private const val TAG = "SWV"
+    private const val TAG = "BitChord"
 
     /**
      * Most bytes worth pulling to find a tag.

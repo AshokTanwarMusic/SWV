@@ -265,7 +265,7 @@ class VocalTracker(private val context: Context) {
     }
 
     companion object {
-        private const val TAG = "SWVVocalTracker"
+        private const val TAG = "BitChordVocalTracker"
         private const val MODEL_ASSET = "vocals_umxhq_int8.onnx"
         /** The model's fixed input width, ~22.8 s, chosen upstream to cover a transition overlap. */
         const val FIXED_FRAMES = 960

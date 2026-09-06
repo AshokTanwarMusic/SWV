@@ -53,12 +53,10 @@ import java.util.Locale
  */
 object DownloadStore {
 
-    private const val TAG = "SWV"
+    private const val TAG = "BitChord"
 
     /** The subfolder of Music that everything lands in. */
-    const val FOLDER = "SWV"
-    /** Legacy folder name kept readable so existing downloads remain discoverable. */
-    const val LEGACY_FOLDER = "SWV"
+    const val FOLDER = "BitChord"
 
     private val relativePath = "${Environment.DIRECTORY_MUSIC}/$FOLDER"
 

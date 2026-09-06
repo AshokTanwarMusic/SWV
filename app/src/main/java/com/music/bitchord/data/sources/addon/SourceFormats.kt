@@ -48,7 +48,7 @@ sealed interface DetectedFormat {
 
 object SourceFormats {
 
-    private const val TAG = "SWV"
+    private const val TAG = "BitChord"
 
     private val json = Json {
         isLenient = true
@@ -185,7 +185,7 @@ object SourceFormats {
             .firstOrNull { it.value is JsonArray && (it.value as JsonArray).isNotEmpty() }?.key
         if (listKey != null) {
             return DetectedFormat.Unsupported(
-                "That JSON lists \"$listKey\", which is not a format SWV reads",
+                "That JSON lists \"$listKey\", which is not a format BitChord reads",
             )
         }
 
@@ -210,7 +210,7 @@ object SourceFormats {
     private suspend fun fetch(url: String): Result<String> = runCatching {
         val request = Request.Builder().url(url)
             .header("Accept", "application/json")
-            .header("User-Agent", "SWV")
+            .header("User-Agent", "BitChord")
             .build()
         Http.client.newCall(request).execute().use { response ->
             if (!response.isSuccessful) {

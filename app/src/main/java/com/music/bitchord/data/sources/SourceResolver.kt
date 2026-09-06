@@ -39,7 +39,7 @@ import kotlinx.coroutines.selects.select
  */
 object SourceResolver {
 
-    private const val TAG = "SWV"
+    private const val TAG = "BitChord"
 
     /**
      * What to ask a source for, right now.

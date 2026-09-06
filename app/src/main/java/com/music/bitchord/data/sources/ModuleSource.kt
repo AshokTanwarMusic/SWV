@@ -372,7 +372,7 @@ class ModuleSource(
         }
 
     internal companion object {
-        const val TAG = "SWV"
+        const val TAG = "BitChord"
 
         /**
          * Whether a module's stream URL is one no server could answer, decided

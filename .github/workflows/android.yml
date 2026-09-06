@@ -36,7 +36,7 @@ jobs:
         path: app/build/outputs/apk/dev/debug/*.apk
 
   build-prod-release:
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/swv-1.5.2-branding'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:

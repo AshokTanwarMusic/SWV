@@ -22,7 +22,7 @@ import java.util.Locale
 
 object LocalMediaRepository {
 
-    private const val TAG = "SWV"
+    private const val TAG = "BitChord"
     private const val MIN_LOCAL_MUSIC_DURATION_MS = 30_000L
 
     private val localMusicExtensions = setOf(
@@ -58,7 +58,7 @@ object LocalMediaRepository {
     }
 
     /**
-     * Retrieves all songs in the `Music/SWV` (and the legacy `Music/BitChord` folder) directory, combining app downloads
+     * Retrieves all songs in the `Music/BitChord` directory, combining app downloads
      * with any local audio files present in that folder.
      *
      * The download record is the better source for a title and a credit — it
@@ -88,8 +88,8 @@ object LocalMediaRepository {
                     MediaStore.Audio.Media.DATE_ADDED,
                     MediaStore.Audio.Media.DATE_MODIFIED,
                 )
-                val selection = "${MediaStore.MediaColumns.RELATIVE_PATH} LIKE ? OR ${MediaStore.MediaColumns.RELATIVE_PATH} LIKE ?"
-                val selectionArgs = arrayOf("%${DownloadStore.FOLDER}%", "%${DownloadStore.LEGACY_FOLDER}%")
+                val selection = "${MediaStore.MediaColumns.RELATIVE_PATH} LIKE ?"
+                val selectionArgs = arrayOf("%${DownloadStore.FOLDER}%")
 
                 context.contentResolver.query(
                     MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
@@ -128,33 +128,32 @@ object LocalMediaRepository {
                     }
                 }
             } else {
-                val musicRoot = android.os.Environment.getExternalStoragePublicDirectory(
-                    android.os.Environment.DIRECTORY_MUSIC,
+                val folder = File(
+                    android.os.Environment.getExternalStoragePublicDirectory(
+                        android.os.Environment.DIRECTORY_MUSIC,
+                    ),
+                    DownloadStore.FOLDER,
                 )
-                listOf(DownloadStore.FOLDER, DownloadStore.LEGACY_FOLDER)
-                    .distinct()
-                    .map { File(musicRoot, it) }
-                    .filter { it.exists() && it.isDirectory }
-                    .forEach { folder ->
-                        folder.listFiles()?.forEach { file ->
-                            if (file.isFile && isAudioFileName(file.name)) {
-                                val uriStr = Uri.fromFile(file).toString()
-                                if (uriStr !in knownUris) {
-                                    val modified = file.lastModified().takeIf { it > 0 }?.div(1_000)
-                                    extraSongs.add(
-                                        buildSongFromUri(
-                                            context,
-                                            uriStr,
-                                            file.name,
-                                            ScannedTags(null, null, modified, modified),
-                                        ),
-                                    )
-                                }
+                if (folder.exists() && folder.isDirectory) {
+                    folder.listFiles()?.forEach { file ->
+                        if (file.isFile && isAudioFileName(file.name)) {
+                            val uriStr = Uri.fromFile(file).toString()
+                            if (uriStr !in knownUris) {
+                                val modified = file.lastModified().takeIf { it > 0 }?.div(1_000)
+                                extraSongs.add(
+                                    buildSongFromUri(
+                                        context,
+                                        uriStr,
+                                        file.name,
+                                        ScannedTags(null, null, modified, modified),
+                                    ),
+                                )
                             }
                         }
                     }
+                }
             }
-        }.onFailure { Log.w(TAG, "Failed scanning Music/SWV directories: ${it.message}") }
+        }.onFailure { Log.w(TAG, "Failed scanning Music/BitChord directory: ${it.message}") }
 
         val filled = appDownloads.map { song ->
             val uri = song.localUri ?: return@map song
