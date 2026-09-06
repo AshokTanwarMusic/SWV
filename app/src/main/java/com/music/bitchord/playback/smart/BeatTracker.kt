@@ -26,6 +26,7 @@ import ai.onnxruntime.OrtEnvironment
 import ai.onnxruntime.OrtSession
 import android.content.Context
 import android.util.Log
+import com.music.bitchord.data.settings.AppSettings
 import java.io.File
 import java.nio.FloatBuffer
 import kotlin.math.abs
@@ -61,13 +62,17 @@ class BeatTracker(private val context: Context) {
     )
 
     @Volatile private var session: OrtSession? = null
+    @Volatile private var sessionThreads = 0
     private val lock = Any()
 
     /** Parsing the graph is far too expensive to repeat per track, so one session is kept. */
     private fun session(): OrtSession? {
-        session?.let { return it }
+        val threads = AppSettings.automixPerformanceMode.value.inferenceThreads
+        session?.takeIf { sessionThreads == threads }?.let { return it }
         synchronized(lock) {
-            session?.let { return it }
+            session?.takeIf { sessionThreads == threads }?.let { return it }
+            runCatching { session?.close() }
+            session = null
             return runCatching {
                 val file = File(context.filesDir, MODEL_ASSET)
                 if (!file.exists() || file.length() == 0L) {
@@ -76,7 +81,7 @@ class BeatTracker(private val context: Context) {
                     }
                 }
                 val options = OrtSession.SessionOptions().apply {
-                    setIntraOpNumThreads(INFERENCE_THREADS)
+                    setIntraOpNumThreads(threads)
                     setOptimizationLevel(OrtSession.SessionOptions.OptLevel.ALL_OPT)
                     // ORT's arena allocator keeps every block it has ever needed, which for this
                     // graph is tens of megabytes of native heap retained for the life of the
@@ -87,7 +92,10 @@ class BeatTracker(private val context: Context) {
                     setMemoryPatternOptimization(false)
                 }
                 OrtEnvironment.getEnvironment().createSession(file.absolutePath, options)
-                    .also { session = it }
+                    .also {
+                        session = it
+                        sessionThreads = threads
+                    }
             }.onFailure { Log.w(TAG, "Beat model unavailable; falling back to no grid", it) }
                 .getOrNull()
         }
@@ -100,10 +108,6 @@ class BeatTracker(private val context: Context) {
      * back onto the full track's timeline rather than starting at zero.
      */
     fun track(pcm: FloatArray, offsetSeconds: Double = 0.0): Grid? {
-        // BitChord 1.5 ships ONNX Runtime only for 64-bit Android. On 32-bit
-        // Android, gracefully fall back to the non-ML transition analysis instead
-        // of touching OrtEnvironment and failing with UnsatisfiedLinkError.
-        if (NativeSupport.is32Bit) return null
         val melStarted = System.currentTimeMillis()
         val spectrogram = MelSpectrogram.compute(pcm) ?: return null
         val melMs = System.currentTimeMillis() - melStarted
@@ -204,14 +208,13 @@ class BeatTracker(private val context: Context) {
         synchronized(lock) {
             runCatching { session?.close() }
             session = null
+            sessionThreads = 0
         }
     }
 
     companion object {
-        private const val TAG = "BitChordBeatTracker"
+        private const val TAG = "SWVBeatTracker"
         private const val MODEL_ASSET = "beat_this_int8.onnx"
-        private const val INFERENCE_THREADS = 4
-
         /** The window the model was trained on, and the margin discarded from each chunk's edges. */
         const val CHUNK_FRAMES = 1500
         const val BORDER_FRAMES = 6

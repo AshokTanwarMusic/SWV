@@ -54,7 +54,7 @@ import java.util.Locale
  */
 internal object QuickJsExecutor {
 
-    private const val TAG = "BitChord"
+    private const val TAG = "SWV"
 
     /**
      * How many modules stay resident.
@@ -388,7 +388,7 @@ internal object QuickJsExecutor {
                     val body = args[3]?.toString()
                     val url = resolveUrl(rawUrl, fetchBase)
 
-                    TrackLog.d(TAG, "  → fetch $method $url")
+                    TrackLog.d(TAG, "  → fetch $method ${redactModuleUrl(url)}")
                     val (statusCode, responseBody) = fetchUrlSync(url, method, headersJson, body)
                     TrackLog.d(TAG, "    HTTP $statusCode (${responseBody.length} bytes)")
 

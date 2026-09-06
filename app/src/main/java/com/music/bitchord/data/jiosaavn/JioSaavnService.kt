@@ -58,8 +58,13 @@ data class RawSongItem(
     val id: String = "",
     val title: String = "",
     val image: String = "",
+    /** JioSaavn sends this as the string `"1"` or `"0"`. */
+    @SerialName("explicit_content") val explicitContent: String = "",
     @SerialName("more_info") val moreInfo: RawMoreInfo = RawMoreInfo()
-)
+) {
+    val isExplicit: Boolean
+        get() = explicitContent == "1" || explicitContent.equals("true", ignoreCase = true)
+}
 
 @Serializable
 data class RawSearchResponse(
@@ -71,8 +76,17 @@ data class RawSongsResponse(
     val songs: List<RawSongItem> = emptyList()
 )
 
+/**
+ * Put uncensored catalogue rows ahead of their clean duplicates.
+ *
+ * Top-level so the pure ordering rule remains unit-testable without
+ * initialising Android's Base64-backed service singleton on the JVM.
+ */
+internal fun prioritizeExplicit(songs: List<RawSongItem>): List<RawSongItem> =
+    songs.sortedByDescending { it.isExplicit }
+
 object JioSaavnService {
-    private const val TAG = "BitChord"
+    private const val TAG = "SWV"
     
     // https://www.jiosaavn.com/api.php
     private val BASE_URL = String(Base64.decode("aHR0cHM6Ly93d3cuamlvc2Fhdm4uY29tL2FwaS5waHA=", Base64.DEFAULT), Charsets.UTF_8)

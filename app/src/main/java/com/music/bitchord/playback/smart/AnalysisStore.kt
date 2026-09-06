@@ -237,7 +237,7 @@ class AnalysisStore(private val context: Context) {
     }
 
     private companion object {
-        const val TAG = "BitChordAnalysisStore"
+        const val TAG = "SWVAnalysisStore"
         const val DIRECTORY = "smart_analysis"
 
         /**
