@@ -629,7 +629,7 @@
     </plurals>
     <string name="no_local_albums">Здесь пока ничего нет из альбома или плейлиста. Загрузите полный альбом или плейлист, и он появится здесь.</string>
     <string name="play_your_replay">Воспроизвести ваш Replay</string>
-    <string name="counted_on_device_with_SWV">Подсчитано на этом устройстве с помощью SWV</string>
+    <string name="counted_on_device_with_swv">Подсчитано на этом устройстве с помощью SWV</string>
     <string name="this_month">Этот месяц</string>
     <string name="this_year">Этот год</string>
     <string name="all_time">За всё время</string>

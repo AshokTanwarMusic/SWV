@@ -607,7 +607,7 @@
     </plurals>
     <string name="no_local_albums">Rien ici n\'appartient encore à un album ou à une playlist. Téléchargez un album complet ou une playlist et il apparaîtra ici.</string>
     <string name="play_your_replay">Lire votre Replay</string>
-    <string name="counted_on_device_with_SWV">Calculé sur cet appareil avec SWV</string>
+    <string name="counted_on_device_with_swv">Calculé sur cet appareil avec SWV</string>
     <string name="this_month">Ce mois-ci</string>
     <string name="this_year">Cette année</string>
     <string name="all_time">Depuis toujours</string>

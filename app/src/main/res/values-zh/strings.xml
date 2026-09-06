@@ -589,7 +589,7 @@
     </plurals>
     <string name="no_local_albums">这里还没有任何属于专辑或播放列表的内容。下载完整的专辑或播放列表后，它们会显示在这里。</string>
     <string name="play_your_replay">播放你的 Replay</string>
-    <string name="counted_on_device_with_SWV">由 SWV 在此设备上统计</string>
+    <string name="counted_on_device_with_swv">由 SWV 在此设备上统计</string>
     <string name="this_month">本月</string>
     <string name="this_year">今年</string>
     <string name="all_time">全部时间</string>

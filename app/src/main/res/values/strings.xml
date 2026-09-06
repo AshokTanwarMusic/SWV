@@ -655,7 +655,7 @@
     </plurals>
     <string name="no_local_albums">Nothing here belongs to an album or playlist yet. Download a complete album or playlist and it will appear here.</string>
     <string name="play_your_replay">Play your Replay</string>
-    <string name="counted_on_device_with_SWV">Counted on this device with SWV</string>
+    <string name="counted_on_device_with_swv">Counted on this device with SWV</string>
     <string name="this_month">This month</string>
     <string name="this_year">This year</string>
     <string name="all_time">All time</string>

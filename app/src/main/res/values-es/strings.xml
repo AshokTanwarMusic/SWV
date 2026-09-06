@@ -619,7 +619,7 @@
     </plurals>
     <string name="no_local_albums">Todavía no hay archivos asociados a un álbum o playlist. Descarga un álbum o una playlist completa para que aparezca aquí.</string>
     <string name="play_your_replay">Reproducir tu Replay</string>
-    <string name="counted_on_device_with_SWV">Calculado en este dispositivo con SWV</string>
+    <string name="counted_on_device_with_swv">Calculado en este dispositivo con SWV</string>
     <string name="this_month">Este mes</string>
     <string name="this_year">Este año</string>
     <string name="all_time">Todo el tiempo</string>

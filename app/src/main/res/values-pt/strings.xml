@@ -555,7 +555,7 @@
     <string name="no_listening_history">sem histórico</string>
     <string name="no_local_albums">Nenhum álbum ou playlist ainda. Baixe um álbum e ele aparecerá aqui.</string>
     <string name="play_your_replay">Tocar seu Replay</string>
-    <string name="counted_on_device_with_SWV">Contabilizado neste dispositivo com SWV</string>
+    <string name="counted_on_device_with_swv">Contabilizado neste dispositivo com SWV</string>
     <string name="this_month">Este mês</string>
     <string name="this_year">Este ano</string>
     <string name="all_time">Todo o tempo</string>

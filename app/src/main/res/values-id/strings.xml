@@ -589,7 +589,7 @@
     </plurals>
     <string name="no_local_albums">Belum ada yang termasuk album atau playlist di sini. Unduh album atau playlist lengkap dan akan muncul di sini.</string>
     <string name="play_your_replay">Putar Replay Anda</string>
-    <string name="counted_on_device_with_SWV">Dihitung di perangkat ini dengan SWV</string>
+    <string name="counted_on_device_with_swv">Dihitung di perangkat ini dengan SWV</string>
     <string name="this_month">Bulan ini</string>
     <string name="this_year">Tahun ini</string>
     <string name="all_time">Sepanjang waktu</string>

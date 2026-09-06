@@ -607,7 +607,7 @@
     </plurals>
     <string name="no_local_albums">यहां अभी तक कुछ भी किसी एल्बम या प्लेलिस्ट का हिस्सा नहीं है। पूरा एल्बम या प्लेलिस्ट डाउनलोड करें और यह यहां दिखेगा।</string>
     <string name="play_your_replay">अपना Replay चलाएं</string>
-    <string name="counted_on_device_with_SWV">इस डिवाइस पर SWV के साथ गिना गया</string>
+    <string name="counted_on_device_with_swv">इस डिवाइस पर SWV के साथ गिना गया</string>
     <string name="this_month">इस महीने</string>
     <string name="this_year">इस साल</string>
     <string name="all_time">अब तक</string>
